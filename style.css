@@ -1,17 +1,31 @@
 *{
     box-sizing: border-box;
     font-family: 'Fredoka One', cursive;
+    justify-content: center;
+    align-items: center;
+}
+.heading{
+    display:block;
+}
+h1{
+    display: inline-block;
+}
+#timer{
+    float: right;
 }
 .container {
+    margin:auto;
     margin-top: 5%;
     width:80%;
     background-color: rgb(132, 132, 226);
+
 }
 
 #question{
     display:flex;
     justify-content: center;
     align-items:center;
+    font-size: 30px;
 }
 .btn-grid {
     display: grid;
@@ -21,4 +35,11 @@
     display:flex;
     justify-content: center;
     align-items: center;
+  }
+  .btn{
+    padding: 10px;
+    margin: 10px;
+  }
+  p{
+    text-align: center;
   }
