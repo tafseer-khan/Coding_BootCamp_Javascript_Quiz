@@ -15,12 +15,12 @@
 
 <body>
     <nav class="navbar navbar-expand navbar-light bg-light">
+        <a class="navbar-brand" href="#">Javascript Quiz</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <span class="navbar-text" id="start"> <strong>Start Quiz</strong> </span>
             <li class="nav-item active">
                 <a class="nav-link" href="#">Check High Scores <span class="sr-only">(current)</span></a>
             </li>
@@ -30,48 +30,7 @@
           </span>
         </div>
     </nav>
-<h1>Javascript Quiz</h1>
-    <script type="text/javascript">
 
-        var questions = [
-        "Inside what HTML element do we put Javascript?",
-        "Where is the correct place to insert Javascript?",
-        "External Javascript Must include a <script> tag.",
-        "What would be used to notify a user?",
-        "How do you create a function in Javascript?",
-        "How do you call a function?",
-        "What is equivalent to not equal to?",
-        "How do you start a for loop?",
-        "How do you comment in Javascript?",
-        "How do you write an array?" ]
-        var answers = [
-        ["<script","<js>","<javascript>","<scripting>"], //0
-        ["The <body> ","Both the <head> and <body> ","The <head>"],//1
-        ["True","False"],//1
-        ["alert(...);","msg(...);","alertBox(...);","msgBox(...);"],//0
-        ["function = myFunction()","function myFunction()","function:myFunction"],//1
-        ["myFunction()","call myFunction()","call function myFunction()"],//0
-        ["-=","not=","x=","!="],//3
-        ["for (i = 0; i <= 5; i++)","for (i = 0; i <= 5)","for i = 1 to 5","for (i <= 5; i++)"],//0
-        ["//This is a comment","'This is a comment","<!--This is a comment-->"],//0
-        ["var colors = [\"red\", \"green\", \"blue\"]","var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")","var colors = (1:\"red\", 2:\"green\", 3:\"blue\")"]//0
-        ]
-        var correctAnswers = [0,1,1,0,1,0,3,0,0,0]
-        var timeAllowed = 30
-        var sec = 120;
-        var started = false;
-        $("#start").on("click",function timer(){
-        if(started == false){        
-            started = true;
-            var timer = setInterval(function(){
-            document.getElementById("timerDisplay").innerHTML= sec+" seconds";
-            sec--;
-            if (sec < 0) {
-                clearInterval(timer);
-            }
-        }, 1000)}
-
-});
 </script>
 </body>
 
