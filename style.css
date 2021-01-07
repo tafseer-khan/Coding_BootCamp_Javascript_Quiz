@@ -1,1 +1,24 @@
-h1{text-align: center};
+*{
+    box-sizing: border-box;
+    font-family: 'Fredoka One', cursive;
+}
+.container {
+    margin-top: 5%;
+    width:80%;
+    background-color: rgb(132, 132, 226);
+}
+
+#question{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+}
+.controls {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
