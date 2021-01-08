@@ -1,3 +1,4 @@
+<!-- This is the index.html file for the Javascript Quiz by Tafseer Khan -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +17,7 @@
         <h1>Javascript Quiz</h1>
         <h1 id="timer">120 seconds remaining</h1>
     </div>
+<!-- Defualt answer buttons are set to 4 buttons -->
     <div class="container">
         <div id="question-container" class="hide">
         <div id="question">Question</div>
@@ -26,13 +28,19 @@
             <button id = "btn4" class="btn answer-btn" value="4">Answer 4</button>
         </div>
         </div>
+    <!-- Controls underneath answer buttons include the start button -->
     <div class="controls">
         <button id="start-btn" class="start-btn btn">Start</button>
-      <script>
+    <!-- Javascript script -->
+    <script>
+        // variables are set to the answer buttons, default seconds, defualt points
         const btn =document.getElementById('answer-buttons')
         const answerButton = document.getElementsByClassName('answer-btn')
+        // Default seconds is set to 130, but visually only 120 seconds are allowed, later in the function 10 seconds are decresed when pressing the start button
         var sec =130;
         var points = 0;
+        // When clicking the start button the first set of questions and answer choices are listed question index lists the value used for determining which question we are on
+        // Also once start button is clicked timer starts to tick 
         $("#start-btn").on("click",function timer(){
             this.style.display = 'none';
             questionIndex = -1;
@@ -44,6 +52,8 @@
             var timer = setInterval(function(){
             document.getElementById("timer").innerHTML= sec+" seconds";
             sec--;
+            // Once timer reaches 0 questions and answers are removed
+            // also a dialog to input initials pops up
             if (sec < 0) {
                 clearInterval(timer);
                 $("#btn1").text("")
@@ -51,12 +61,19 @@
                 $("#btn3").text("")
                 $("#btn4").text("")
                 $("#question").text("")
+                $("#points").append('<hr>','Initials: <input id="in">','<input type="button" value="submit" id="submit"/>')
+                var userInput = document.getElementById('in').value;
                 }
                 }, 1000)})
+            $("#submit").on("click",function submit(){
+                $("#submit").append('<hr>',userInput,points)
+            })
+            //Once any button, in this case questions and start button, index value +1, updating what questions and answers are displayed
             $(".btn").on("click",function next(){
                 var pick = $(this).val();
                 console.log("Index value is: "+cA[questionIndex]);
                 console.log("Your pick is: "+pick);
+            // if the correct answer is picked 10 points are added, otherwise 10 seconds are deduced
                 if(cA[questionIndex]== pick){
                     points = points+10;
                     $("#points").text("Points: "+points)
@@ -65,13 +82,16 @@
                 console.log("You have this many points "+points);
                 questionIndex = questionIndex +1;
                 console.log(questionIndex);
+                // Once the last question has been answered questions and answers are not displayed. Your timer automatically goes to 0 
                 if(questionIndex == 10){
                     $("#btn1").text("")
                     $("#btn2").text("")
                     $("#btn3").text("")
                     $("#btn4").text("")
                     $("#question").text("")
+                    sec = 0
                 }
+                // If questions are still being answered questions and answers will continue to be updated
                 else{
                 $("#btn1").text(questions123[questionIndex].answers[0])
                 $("#btn2").text(questions123[questionIndex].answers[1])
@@ -79,8 +99,9 @@
                 $("#btn4").text(questions123[questionIndex].answers[3])
                 $("#question").text(questions123[questionIndex].question)}
         })
+// These are the values for the correct answers
 var cA = [1,2,2,1,2,1,4,1,1,1]                
-
+// These are the questions and answers that are to be displayed
 const questions123 = [
     {
       question: 'Inside what HTML element do we put Javascript?',
@@ -177,6 +198,7 @@ const questions123 = [
       </script>
     </div>
   </div>
+  <!-- After the questions and answers your points are displayed -->
   <p id="points">Points: 0</p>
 </body>
 </html>
