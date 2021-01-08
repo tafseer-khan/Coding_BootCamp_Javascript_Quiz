@@ -46,6 +46,11 @@
             sec--;
             if (sec < 0) {
                 clearInterval(timer);
+                $("#btn1").text("")
+                $("#btn2").text("")
+                $("#btn3").text("")
+                $("#btn4").text("")
+                $("#question").text("")
                 }
                 }, 1000)})
             $(".btn").on("click",function next(){
