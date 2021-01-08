@@ -20,19 +20,26 @@
         <div id="question-container" class="hide">
         <div id="question">Question</div>
         <div id="answer-buttons" class="btn-grid">
-            <button id = "btn" class="btn answer-btn" value="1">Answer 1</button>
-            <button id = "btn" class="btn answer-btn" value="2">Answer 2</button>
-            <button id = "btn" class="btn answer-btn" value="3">Answer 3</button>
-            <button id = "btn" class="btn answer-btn" value="4">Answer 4</button>
+            <button id = "btn1" class="btn answer-btn" value="1">Answer 1</button>
+            <button id = "btn2" class="btn answer-btn" value="2">Answer 2</button>
+            <button id = "btn3" class="btn answer-btn" value="3">Answer 3</button>
+            <button id = "btn4" class="btn answer-btn" value="4">Answer 4</button>
         </div>
         </div>
     <div class="controls">
         <button id="start-btn" class="start-btn btn">Start</button>
       <script>
-        var sec =120;
-        var answers = [['<script>']]
+        const btn =document.getElementById('answer-buttons')
+        const answerButton = document.getElementsByClassName('answer-btn')
+        var sec =130;
+        var points = 0;
         $("#start-btn").on("click",function timer(){
             this.style.display = 'none';
+            questionIndex = -1;
+            $("#btn1").text(questions123[0].answers[0])
+            $("#btn2").text(questions123[0].answers[1])
+            $("#btn3").text(questions123[0].answers[2])
+            $("#btn4").text(questions123[0].answers[3])
             $("#question").text(questions123[0].question)
             var timer = setInterval(function(){
             document.getElementById("timer").innerHTML= sec+" seconds";
@@ -41,93 +48,123 @@
                 clearInterval(timer);
                 }
                 }, 1000)})
-                
+            $(".btn").on("click",function next(){
+                var pick = $(this).val();
+                console.log("Index value is: "+cA[questionIndex]);
+                console.log("Your pick is: "+pick);
+                if(cA[questionIndex]== pick){
+                    points = points+10;
+                    $("#points").text("Points: "+points)
+                }
+                else{sec = sec-10;}
+                console.log("You have this many points "+points);
+                questionIndex = questionIndex +1;
+                console.log(questionIndex);
+                if(questionIndex == 10){
+                    $("#btn1").text("")
+                    $("#btn2").text("")
+                    $("#btn3").text("")
+                    $("#btn4").text("")
+                    $("#question").text("")
+                }
+                else{
+                $("#btn1").text(questions123[questionIndex].answers[0])
+                $("#btn2").text(questions123[questionIndex].answers[1])
+                $("#btn3").text(questions123[questionIndex].answers[2])
+                $("#btn4").text(questions123[questionIndex].answers[3])
+                $("#question").text(questions123[questionIndex].question)}
+        })
+var cA = [1,2,2,1,2,1,4,1,1,1]                
 
 const questions123 = [
     {
       question: 'Inside what HTML element do we put Javascript?',
       answers: [
-        { text: '<script>', correct: true },
-        { text: '<js>', correct: false },
-        { text: '<javascript>', correct: false },
-        { text: '<scripting>', correct: false }
+        '<script>',
+        '<js>',
+        '<javascript>',
+        '<scripting>'
       ]
     },
     {
       question: 'Where is the correct place to insert Javascript?',
       answers: [
-        { text: 'The <body>', correct: false },
-        { text: 'Both the <head> and <body>', correct: true },
-        { text: 'The <head>', correct: false },
-        { text: 'No where', correct: true }
+        'The <body>',
+        'Both the <head> and <body>',
+        'The <head>',
+        'No where',
       ]
     },
     {
       question: 'External Javascript Must include a <script> tag.',
       answers: [
-        { text: 'True', correct: false },
-        { text: 'False', correct: true }
+        'True',
+        'False',
+        'Who Knows?',
+        'Maybe'
       ]
     },
     {
       question: 'What would be used to notify a user?',
       answers: [
-        { text: 'alert(...);', correct: true },
-        { text: 'msg(...);', correct: false },
-        { text: 'alertBox(...);', correct: false },
-        { text: 'msgBox(...);', correct: false }
+        'alert(...);',
+        'msg(...);',
+        'alertBox(...);',
+        'msgBox(...);'
       ]
     },
     {
       question: 'How do you create a function in Javascript?',
       answers: [
-        { text: 'function = myFunction()', correct: false },
-        { text: 'function myFunction()', correct: true },
-        { text: 'function:myFunction()', correct: false },
-        { text: 'myFunction()', correct: false }
+        'function = myFunction()',
+        'function myFunction()',
+        'function:myFunction()',
+        'myFunction()',
       ]
     },
     {
       question: 'How do you call a function?',
       answers: [
-        { text: 'myFunction()', correct: true },
-        { text: 'call myFunction()', correct: false },
-        { text: 'call function myFunction()', correct: false },
-        { text: 'function myFunction()', correct: false }
+        'myFunction()',
+        'call myFunction()',
+        'call function myFunction()',
+        'function myFunction()',
       ]
     },
     {
       question: 'What is equivalent to not equal to?',
       answers: [
-        { text: '-=', correct: false },
-        { text: 'not=', correct: false },
-        { text: 'x=', correct: false },
-        { text: '!=', correct: true }
+        '-=',
+        'not=',
+        'x=',
+        '!=',
       ]
     },
     {
       question: 'How do you start a for loop?',
       answers: [
-        { text: 'for (i = 0; i <= 5; i++)', correct: true },
-        { text: 'for (i = 0; i <= 5)', correct: false },
-        { text: 'for i = 1 to 5', correct: false },
-        { text: 'for (i <= 5; i++)', correct: false }
+        'for (i = 0; i <= 5; i++)',
+        'for (i = 0; i <= 5)',
+        'for i = 1 to 5',
+        'for (i <= 5; i++)',
       ]
     },
     {
       question: 'How do you comment in Javascript?',
       answers: [
-        { text: '//This is a comment', correct: true },
-        { text: '"This is a comment"', correct: false },
-        { text: '<!--This is a comment-->', correct: false },
-        { text: '\'This is a comment', correct: false }
+        '//This is a comment',
+        '"This is a comment"',
+        '<!--This is a comment-->',
+        '\'This is a comment',
       ]
     },
     {
       question: 'Was this Quiz easy?',
       answers: [
-        { text: 'Yes', correct: true },
-        { text: 'No', correct: false },
+        'Yes',
+        'No',
+        'I didnt\'t take a quiz',
+        'Where am I?'
    
       ]
     }
@@ -135,6 +172,6 @@ const questions123 = [
       </script>
     </div>
   </div>
-  <p>Points: 0</p>
+  <p id="points">Points: 0</p>
 </body>
 </html>
